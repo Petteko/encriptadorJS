@@ -9,35 +9,30 @@
 <body>
     <div class="container">
         <h1>Encriptador de Texto</h1>
+        
+        <hr> <!-- Línea separadora -->
 
-        <!-- Campo para texto -->
         <textarea id="input-text" placeholder="Introduce el texto aquí..."></textarea>
+        
+        <p class="warning">¡Solo letras minúsculas y sin acentos!</p>
+        
+        <button id="encrypt-btn">Encriptar</button>
+        <button id="decrypt-btn">Desencriptar</button>
 
-        <!-- Advertencia -->
-        <p class="warning">! Solo letras minúsculas y sin acentos</p>
+        <img id="encryption-img" src="C:\Users\Petteko\Desktop\Python\One\encriptadorJS\1724619406069.json" alt="Imagen de encriptación" />
 
-        <!-- Botones -->
-        <div class="buttons">
-            <button id="encrypt-btn">Encriptar</button>
-            <button id="decrypt-btn">Desencriptar</button>
+        <!-- Campo para mostrar la semilla -->
+        <div id="seed-container" style="display: none;">
+            <p>Semilla de encriptación</p>
+            <input type="text" id="seed-input" placeholder="Introduce la semilla...">
         </div>
 
-        <!-- Área para mostrar el texto encriptado/desencriptado -->
-        <div id="output-container">
-            <img id="output-image" src="placeholder.png" alt="Imagen de presentación">
-            <p id="output-text" style="display: none;"></p>
-        </div>
-
-        <!-- Botón de copiar -->
-        <button id="copy-btn" style="display: none;">Copiar Texto</button>
-
-        <!-- Semilla para copiar -->
-        <div class="copy-seed" id="copy-seed-container" style="display: none;">
-            <p>Seed para desencriptar: <span id="copy-seed"></span></p>
-            <button id="copy-seed-btn">Copiar Seed</button>
-        </div>
+        <textarea id="output-text" placeholder="Texto encriptado/desencriptado aparecerá aquí..." readonly></textarea>
+        
+        <button id="copy-btn" style="display: none;">Copiar</button>
+        
+        <p id="copied-message" style="display: none;">Copiado</p>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
