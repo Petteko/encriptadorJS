@@ -9,6 +9,7 @@ Este proyecto es un encriptador y desencriptador de texto basado en JavaScript, 
   - Solo se permiten letras minúsculas y sin acentos. Si se ingresan caracteres no permitidos, se muestra una advertencia.
   - Genera una semilla única de 6 dígitos por sesión que se utiliza para encriptar el texto.
   - La semilla puede ser modificada por el usuario para probar diferentes encriptaciones.
+  - Existe una semilla secreta llamada "oracle" que cumple con un criterio particular de encriptación. Cualquier otro texto o caracter que no sea un número de 6    dígitos no será reconocido como una semlla válida.
 
 - **Desencriptación de Texto:**
   - Permite desencriptar un mensaje encriptado introduciendo la semilla correspondiente.
