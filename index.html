@@ -3,35 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encriptador de Texto</title>
+    <title>Encriptador</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Encriptador de Texto</h1>
-        
-        <hr> <!-- Línea separadora -->
-
-        <textarea id="input-text" placeholder="Introduce el texto aquí..."></textarea>
-        
-        <p class="warning">¡Solo letras minúsculas y sin acentos!</p>
-        
+        <textarea id="input-text" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <div id="warning-text">¡Solo letras minúsculas y sin acentos!</div>
         <button id="encrypt-btn">Encriptar</button>
         <button id="decrypt-btn">Desencriptar</button>
-
-        <img id="encryption-img" src="C:\Users\Petteko\Desktop\Python\One\encriptadorJS\1724619406069.json" alt="Imagen de encriptación" />
-
-        <!-- Campo para mostrar la semilla -->
-        <div id="seed-container" style="display: none;">
-            <p>Semilla de encriptación</p>
-            <input type="text" id="seed-input" placeholder="Introduce la semilla...">
+        <div id="search-gif">
+            <img src="1724650350879.gif" alt="Buscando...">
         </div>
-
-        <textarea id="output-text" placeholder="Texto encriptado/desencriptado aparecerá aquí..." readonly></textarea>
-        
-        <button id="copy-btn" style="display: none;">Copiar</button>
-        
-        <p id="copied-message" style="display: none;">Copiado</p>
+        <div id="output-container">
+            <pre id="output-text"></pre>
+            <button id="copy-btn" style="display:none;">Copiar</button>
+            <div id="copied-message" style="display:none;">¡Mensaje copiado!</div>
+        </div>
+        <input id="seed-input" type="text" maxlength="6" placeholder="Semilla">
     </div>
     <script src="script.js"></script>
 </body>

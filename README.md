@@ -21,7 +21,7 @@ Este proyecto es un encriptador y desencriptador de texto basado en JavaScript, 
 
 - **Interfaz de Usuario:**
   - La página se adapta a diferentes tamaños de pantalla, incluyendo versiones de escritorio y móviles.
-  - Al encriptar un mensaje, se muestra la semilla en lugar de una imagen animada.
+  - Al encriptar un mensaje, se muestra la semilla en lugar de una animación.
   - Instrucciones de uso claras y mensajes de advertencia para el usuario.
 
 ## Requisitos
@@ -29,3 +29,14 @@ Este proyecto es un encriptador y desencriptador de texto basado en JavaScript, 
   - HTML5, CSS3, JavaScript.
   - Uso de la API del portapapeles de JavaScript.
   - Gestión del DOM para manipulación de elementos HTML.
+  - Uso de la librería Lottie para animaciones JSON.
+
+## Instalación
+1. Clona este repositorio: `git clone https://github.com/tuusuario/encriptador-texto.git`
+2. Abre el archivo `index.html` en tu navegador.
+
+## Uso
+1. Introduce el texto que deseas encriptar.
+2. Haz clic en "Encriptar" para generar el texto encriptado y la semilla.
+3. Copia el texto encriptado usando el botón "Copiar".
+4. Puedes desencriptar el texto introduciendo la misma semilla y haciendo clic en "Desencriptar".

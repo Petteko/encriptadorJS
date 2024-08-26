@@ -1,99 +1,127 @@
+/* Estilo general del cuerpo */
 body {
-  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
+  background-color: #F3F5FC; /* Color de fondo general */
+  color: #0A3871; /* Color de texto general */
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
 }
 
+/* Contenedor principal */
 .container {
-  background-color: #fff;
-  padding: 20px;
+  background-color: #D8DFE8; /* Color de fondo del contenedor */
+  padding: 50px 200px; /* Padding de 50px arriba/abajo, 200px izquierda/derecha */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 900px; /* Ancho más grande */
+  max-width: 1000px;
   width: 100%;
+  box-sizing: border-box;
 }
 
+/* Adaptación responsiva para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .container {
+      padding: 20px;
+      width: 90%;
+  }
+}
+
+/* Título del encriptador */
 h1 {
-  font-size: 2rem;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
+  border-bottom: 2px solid #0A3871;
+  padding-bottom: 10px;
+  font-size: 24px;
 }
 
-hr {
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-}
-
+/* Cuadro de texto */
 textarea {
   width: 100%;
-  height: 100px;
-  margin-bottom: 10px;
+  height: 150px;
   padding: 10px;
+  font-size: 16px;
+  border: 2px solid #0A3871;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  box-sizing: border-box;
   resize: none;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
+/* Botones */
 button {
-  width: 48%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button#copy-btn {
-  width: 100%;
-  background-color: #28a745;
-  display: block;
-  margin-top: 10px;
+/* Estilo del botón Encriptar */
+#encrypt-btn {
+  background-color: #0A3871;
+  color: #F3F5FC;
 }
 
-.warning {
-  font-size: 0.875rem;
-  color: #ff0000;
-  margin-bottom: 10px;
+/* Estilo del botón Desencriptar */
+#decrypt-btn {
+  background-color: #D8DFE8;
+  color: #0A3871;
 }
 
-img#encryption-img {
-  width: 100%;
-  margin-top: 10px;
-  display: block;
+/* Separación entre botones */
+button + button {
+  margin-left: 10px;
 }
 
-#seed-container {
-  margin-top: 20px;
-}
-
+/* Mensaje copiado */
 #copied-message {
+  display: none;
   color: green;
-  font-size: 1rem;
   margin-top: 10px;
+}
+
+/* Cuadro para la semilla */
+#seed-input {
+  width: 100px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 10px;
+  border: 2px solid #0A3871;
+  border-radius: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
-@media (max-width: 600px) {
-  .container {
-      max-width: 90%;
-  }
+/* Texto encriptado */
+#output-text {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #495057;
+  word-wrap: break-word;
+}
 
-  button {
-      width: 100%;
-      margin-bottom: 10px;
-  }
+/* Estilo del contenedor del GIF */
+#gif-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilo de la imagen GIF */
+#search-gif {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilo para ocultar elementos */
+.hidden {
+  display: none;
 }

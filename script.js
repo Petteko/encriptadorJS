@@ -1,78 +1,78 @@
-// Obtener elementos del DOM
-const inputText = document.getElementById('input-text');
-const outputText = document.getElementById('output-text');
-const encryptBtn = document.getElementById('encrypt-btn');
-const decryptBtn = document.getElementById('decrypt-btn');
-const copyBtn = document.getElementById('copy-btn');
-const seedInput = document.getElementById('seed-input');
-const seedContainer = document.getElementById('seed-container');
-const encryptionImg = document.getElementById('encryption-img');
-const copiedMessage = document.getElementById('copied-message');
+let seed = null;
 
-let currentSeed = ''; // Mantener la misma semilla durante la sesión
+document.getElementById('encrypt-btn').addEventListener('click', function () {
+    const inputText = document.getElementById('input-text').value;
 
-// Función para encriptar el texto
+    // Validación de caracteres permitidos
+    if (!/^[a-z\s]*$/.test(inputText)) {
+        alert('Solo se permiten letras minúsculas y sin acentos.');
+        return;
+    }
+
+    // Generar semilla si no existe y se necesita
+    if (document.getElementById('seed-input').value.trim() === '') {
+        seed = Math.floor(Math.random() * 900000) + 100000; // Semilla de 6 dígitos
+        document.getElementById('seed-input').value = seed;
+    } else {
+        seed = parseInt(document.getElementById('seed-input').value);
+    }
+
+    // Encriptar con la semilla actual
+    const encryptedText = encrypt(inputText, seed);
+
+    // Mostrar texto encriptado y ocultar GIF
+    document.getElementById('output-text').textContent = encryptedText;
+    document.getElementById('search-gif').style.display = 'none';
+    document.getElementById('copy-btn').style.display = 'inline-block';
+});
+
+document.getElementById('decrypt-btn').addEventListener('click', function () {
+    const inputText = document.getElementById('input-text').value;
+    const currentSeed = parseInt(document.getElementById('seed-input').value);
+
+    if (isNaN(currentSeed)) {
+        alert('Debe ingresar una semilla válida.');
+        return;
+    }
+
+    // Intentar desencriptar
+    const decryptedText = decrypt(inputText, currentSeed);
+    document.getElementById('input-text').value = decryptedText;
+});
+
+document.getElementById('seed-input').addEventListener('input', function () {
+    seed = parseInt(this.value);
+    if (isNaN(seed)) {
+        seed = null;
+    }
+});
+
+document.getElementById('copy-btn').addEventListener('click', function () {
+    const outputText = document.getElementById('output-text').textContent;
+    navigator.clipboard.writeText(outputText).then(() => {
+        const copiedMessage = document.getElementById('copied-message');
+        copiedMessage.style.display = 'block';
+        setTimeout(() => {
+            copiedMessage.style.display = 'none';
+        }, 2000);
+    });
+});
+
+// Mostrar GIF cuando no haya texto encriptado
+document.getElementById('input-text').addEventListener('input', function () {
+    if (this.value.trim() === '') {
+        document.getElementById('search-gif').style.display = 'block';
+        document.getElementById('output-text').textContent = '';
+        document.getElementById('copy-btn').style.display = 'none';
+    }
+});
+
+// Función para encriptar texto
 function encrypt(text, seed) {
-    let encryptedText = '';
-    for (let i = 0; i < text.length; i++) {
-        let charCode = text.charCodeAt(i) + parseInt(seed[i % seed.length]);
-        encryptedText += String.fromCharCode(charCode);
-    }
-    return encryptedText;
+    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) + seed)).join('');
 }
 
-// Función para desencriptar el texto
+// Función para desencriptar texto
 function decrypt(text, seed) {
-    let decryptedText = '';
-    for (let i = 0; i < text.length; i++) {
-        let charCode = text.charCodeAt(i) - parseInt(seed[i % seed.length]);
-        decryptedText += String.fromCharCode(charCode);
-    }
-    return decryptedText;
+    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) - seed)).join('');
 }
-
-// Validación de texto
-function validateText(text) {
-    const regex = /^[a-z ]+$/;
-    return regex.test(text);
-}
-
-// Event Listener para encriptar
-encryptBtn.addEventListener('click', () => {
-    const text = inputText.value;
-    if (validateText(text)) {
-        if (!currentSeed) {
-            currentSeed = Math.floor(Math.random() * 1000000).toString();
-        }
-        const encryptedText = encrypt(text, currentSeed);
-        outputText.value = encryptedText;
-        seedInput.value = currentSeed;
-        copyBtn.style.display = 'block';
-        seedContainer.style.display = 'block';
-        encryptionImg.style.display = 'none';
-    } else {
-        alert('El texto solo puede contener letras minúsculas y sin acentos.');
-    }
-});
-
-// Event Listener para desencriptar
-decryptBtn.addEventListener('click', () => {
-    const text = outputText.value;
-    const seed = seedInput.value || currentSeed;
-    if (seed !== '') {
-        const decryptedText = decrypt(text, seed);
-        inputText.value = decryptedText;
-    } else {
-        alert('Por favor, introduce la semilla para desencriptar.');
-    }
-});
-
-// Event Listener para copiar texto
-copyBtn.addEventListener('click', () => {
-    outputText.select();
-    document.execCommand('copy');
-    copiedMessage.style.display = 'block';
-    setTimeout(() => {
-        copiedMessage.style.display = 'none';
-    }, 2000); // Mensaje desaparece después de 2 segundos
-});
