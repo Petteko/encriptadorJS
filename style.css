@@ -13,7 +13,7 @@ body {
 
 /* Contenedor principal */
 .container {
-  background-color: #D8DFE8; /* Color de fondo del contenedor */
+  background-color: #e9e9ed; /* Color de fondo del contenedor */
   padding: 50px 200px; /* Padding de 50px arriba/abajo, 200px izquierda/derecha */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -54,7 +54,7 @@ textarea {
 /* Botones */
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px; /* Tamaño del icono debe ser visible */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -73,9 +73,15 @@ button {
   color: #0A3871;
 }
 
-/* Separación entre botones */
+/* Estilo del botón Copiar (en desencriptar) */
+#copy-output-btn {
+  background-color: #D8DFE8;
+  color: #0A3871;
+}
+
+/* Separación entre botones centrales*/
 button + button {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 /* Mensaje copiado */
@@ -99,22 +105,34 @@ button + button {
   text-align: center;
 }
 
+#output-container {
+  text-align: center; /* Centra el texto y los botones en el contenedor */
+  margin-top: 20px;
+}
+
 /* Texto encriptado */
 #output-text {
   margin-top: 20px;
   font-size: 18px;
   color: #495057;
   word-wrap: break-word;
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 2px solid #0A3871;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: none; /* Oculto por defecto */
 }
 
 /* Estilo del contenedor del GIF */
-#gif-container {
+#search-gif {
   text-align: center;
   margin-top: 20px;
 }
 
 /* Estilo de la imagen GIF */
-#search-gif {
+#search-gif img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
@@ -124,4 +142,68 @@ button + button {
 /* Estilo para ocultar elementos */
 .hidden {
   display: none;
+}
+
+/* Estilo del cuadro emergente */
+#dialog {
+  position: fixed; /* Asegura que esté en una posición fija en la pantalla */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Ajusta el cuadro para que esté completamente centrado */
+  background-color: #f8d7da; /* Fondo del cuadro emergente, puedes cambiarlo según tu diseño */
+  color: #721c24; /* Color del texto del cuadro emergente */
+  border: 1px solid #f5c6cb; /* Borde del cuadro emergente */
+  padding: 20px; /* Espaciado interno del cuadro emergente */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra del cuadro emergente */
+  z-index: 1000; /* Asegura que el cuadro esté encima de otros elementos */
+  display: none; /* Oculto por defecto */
+  opacity: 0; /* Opacidad inicial */
+  transition: opacity 0.5s ease; /* Transición suave para el desvanecimiento */
+}
+
+#dialog.dialog-hidden {
+  display: none; /* Asegura que esté oculto cuando no se necesita */
+}
+
+#dialog.show {
+  display: block; /* Mostrar el cuadro emergente cuando sea necesario */
+  opacity: 1; /* Hacer visible el cuadro emergente */
+}
+
+
+/* Advertencia */
+.warning {
+  margin-top: 8px; /* Ajusta altura entre el cuadro y la advertencia */
+  font-size: 14px; /* Puede coincidir con la altura de los botones (?) */
+  color: #6c757d; /* Gris */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.warning span {
+  margin-left: 0;
+}
+
+.warning button {
+  font-size: 14px;
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+/* Contenedor de botones */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+
+/* Botón Copiar */
+#copy-output-btn {
+  background-color: #D8DFE8;
+  color: #0A3871;
 }

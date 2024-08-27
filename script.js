@@ -1,3 +1,4 @@
+// Variables globales
 let seed = null;
 const SPECIAL_SEED = 'oracle';
 
@@ -29,12 +30,41 @@ function specialDecrypt(text) {
     return result;
 }
 
+// Función para encriptar texto
+function encrypt(text, seed) {
+    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) + seed)).join('');
+}
+
+// Función para desencriptar texto
+function decrypt(text, seed) {
+    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) - seed)).join('');
+}
+
+// Mostrar GIF cuando no haya texto encriptado y ocultar el cuadro de texto encriptado
+document.getElementById('input-text').addEventListener('input', function () {
+    const outputText = document.getElementById('output-text');
+    const searchGif = document.getElementById('search-gif');
+
+    if (this.value.trim() === '') {
+        searchGif.style.display = 'block';
+        outputText.style.display = 'none';
+        document.getElementById('copy-output-btn').style.display = 'none'; // Ocultar botón copiar
+    } else {
+        searchGif.style.display = 'none';
+        outputText.style.display = 'block'; // Mostrar cuadro de texto encriptado
+    }
+});
+
+// Evento para el botón "Encriptar"
 document.getElementById('encrypt-btn').addEventListener('click', function () {
     const inputText = document.getElementById('input-text').value;
+    const outputText = document.getElementById('output-text');
+    const searchGif = document.getElementById('search-gif');
+    const copyOutputBtn = document.getElementById('copy-output-btn');
 
     // Validación de caracteres permitidos
     if (!/^[a-z\s]*$/.test(inputText)) {
-        alert('Solo se permiten letras minúsculas y sin acentos.');
+        showDialog('⚠️ Solo se permiten letras minúsculas, sin acentos ni caracteres especiales.');
         return;
     }
 
@@ -43,7 +73,7 @@ document.getElementById('encrypt-btn').addEventListener('click', function () {
     if (!/^\d{6}$/.test(currentSeed)) {
         if (currentSeed === SPECIAL_SEED) {
             // Special encryption
-            document.getElementById('output-text').textContent = specialEncrypt(inputText);
+            outputText.textContent = specialEncrypt(inputText);
             document.getElementById('seed-input').value = SPECIAL_SEED;
         } else {
             // Generate a new seed if the current one is invalid or blank
@@ -55,20 +85,23 @@ document.getElementById('encrypt-btn').addEventListener('click', function () {
     }
 
     // Encriptar con la semilla actual
-    const encryptedText = seed === SPECIAL_SEED ? specialEncrypt(inputText) : encrypt(inputText, seed);
+    const encryptedText = currentSeed === SPECIAL_SEED ? specialEncrypt(inputText) : encrypt(inputText, seed);
 
     // Mostrar texto encriptado y ocultar GIF
-    document.getElementById('output-text').textContent = encryptedText;
-    document.getElementById('search-gif').style.display = 'none';
-    document.getElementById('copy-btn').style.display = 'inline-block';
+    outputText.textContent = encryptedText;
+    searchGif.style.display = 'none';
+    outputText.style.display = 'block';
+    copyOutputBtn.style.display = 'inline-block'; // Mostrar botón copiar
 });
 
+
+// Evento para el botón "Desencriptar"
 document.getElementById('decrypt-btn').addEventListener('click', function () {
-    const inputText = document.getElementById('input-text').value;
+    const inputText = document.getElementById('output-text').textContent;
     const currentSeed = document.getElementById('seed-input').value.trim();
 
     if (!/^\d{6}$/.test(currentSeed) && currentSeed !== SPECIAL_SEED) {
-        alert('Debe ingresar una semilla válida.');
+        showDialog('⚠️ La semilla debe ser un número de 6 dígitos o la palabra "oracle".');
         return;
     }
 
@@ -80,12 +113,27 @@ document.getElementById('decrypt-btn').addEventListener('click', function () {
     document.getElementById('input-text').value = decryptedText;
 });
 
-document.getElementById('seed-input').addEventListener('input', function () {
-    seed = this.value.trim();
-
+// Funcionalidad para el botón "Copiar" (entrada)
+document.getElementById('copy-btn').addEventListener('click', function () {
+    const inputText = document.getElementById('input-text');
+    inputText.select();
+    document.execCommand('copy');
 });
 
-document.getElementById('copy-btn').addEventListener('click', function () {
+// Funcionalidad para el botón "Pegar"
+document.getElementById('paste-btn').addEventListener('click', function () {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('input-text').value = text;
+    });
+});
+
+// Funcionalidad para el botón "Borrar"
+document.getElementById('clear-btn').addEventListener('click', function () {
+    document.getElementById('input-text').value = '';
+});
+
+// Funcionalidad para el botón "Copiar" (output)
+document.getElementById('copy-output-btn').addEventListener('click', function () {
     const outputText = document.getElementById('output-text').textContent;
     navigator.clipboard.writeText(outputText).then(() => {
         const copiedMessage = document.getElementById('copied-message');
@@ -96,21 +144,13 @@ document.getElementById('copy-btn').addEventListener('click', function () {
     });
 });
 
-// Mostrar GIF cuando no haya texto encriptado
-document.getElementById('input-text').addEventListener('input', function () {
-    if (this.value.trim() === '') {
-        document.getElementById('search-gif').style.display = 'block';
-        document.getElementById('output-text').textContent = '';
-        document.getElementById('copy-btn').style.display = 'none';
-    }
-});
-
-// Función para encriptar texto
-function encrypt(text, seed) {
-    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) + seed)).join('');
+// Mostrar cuadro de diálogo emergente
+function showDialog(message) {
+    const dialog = document.getElementById('dialog');
+    dialog.textContent = message;
+    dialog.classList.add('show'); // Mostrar el cuadro emergente
+    setTimeout(() => {
+        dialog.classList.remove('show'); // Ocultar después de 3 segundos
+    }, 3000);
 }
 
-// Función para desencriptar texto
-function decrypt(text, seed) {
-    return text.split('').map(char => String.fromCharCode(char.charCodeAt(0) - seed)).join('');
-}
