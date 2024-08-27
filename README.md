@@ -1,45 +1,47 @@
 # Proyecto: Encriptador de Texto
 
-## Descripción
-Este proyecto es un encriptador y desencriptador de texto basado en JavaScript, diseñado para simular la privacidad y seguridad de los mensajes. El sistema utiliza un método de encriptación simple que incorpora una semilla (seed) generada aleatoriamente. La semilla es esencial para la desencriptación y permite al usuario experimentar con diferentes valores para ver cómo afectan la encriptación.
+## 📝 Descripción
+¡Bienvenido a nuestro encriptador de texto! Este proyecto es una herramienta divertida y útil que te permite encriptar y desencriptar mensajes de manera sencilla. La idea es asegurar tus mensajes usando un método de encriptación que utiliza una semilla (seed) generada aleatoriamente. Puedes experimentar con diferentes semillas para ver cómo cambian los resultados. También tenemos una semilla especial llamada "oracle" que aplica reglas de encriptación únicas solo para reproducir el ejemplo del desafío de Oracle One. Solo se aceptan números de 6 dígitos como semillas válidas, ¡así que prueba introducir lo que quieras!
 
-## Funcionalidades
-- **Encriptación de Texto:**
-  - Permite encriptar un texto ingresado por el usuario.
-  - Solo se permiten letras minúsculas y sin acentos. Si se ingresan caracteres no permitidos, se muestra una advertencia.
-  - Genera una semilla única de 6 dígitos por sesión que se utiliza para encriptar el texto.
-  - La semilla puede ser modificada por el usuario para probar diferentes encriptaciones.
-  - Existe una semilla secreta llamada "oracle" que cumple con un criterio particular de encriptación. Cualquier otro texto o caracter que no sea un número de 6    dígitos no será reconocido como una semlla válida.
+## 🚀 Funcionalidades
+- **Encriptar Texto:**
+  - Convierte tu mensaje en texto encriptado.
+  - Solo se aceptan letras minúsculas y espacios. Si introduces algo no permitido, te lo haremos saber con un mensaje de advertencia.
+  - Genera automáticamente una semilla única de 6 dígitos para cada sesión, que se usa para encriptar el texto.
+  - Puedes cambiar la semilla para experimentar con diferentes resultados.
 
-- **Desencriptación de Texto:**
-  - Permite desencriptar un mensaje encriptado introduciendo la semilla correspondiente.
-  - Si la semilla ingresada es incorrecta, el mensaje desencriptado no tendrá sentido.
-  - Maneja errores en caso de que no se ingrese una semilla válida.
+- **Desencriptar Texto:**
+  - Recupera el mensaje original introduciendo la semilla que usaste para encriptarlo.
+  - Si introduces una semilla incorrecta, el texto desencriptado no tendrá sentido.
+  - Maneja errores si la semilla ingresada no es válida.
 
 - **Copiar al Portapapeles:**
-  - El usuario puede copiar el mensaje encriptado al portapapeles mediante un botón.
-  - Al copiar, se muestra un mensaje de confirmación que desaparece automáticamente después de 2 segundos.
+  - Copia el texto encriptado al portapapeles con solo un clic.
+  - Aparece un mensaje de confirmación cuando el texto se copia, que desaparece automáticamente después de 2 segundos.
 
 - **Interfaz de Usuario:**
-  - La página se adapta a diferentes tamaños de pantalla, incluyendo versiones de escritorio y móviles.
-  - Al encriptar un mensaje, una animación de búsqueda (GIF) se muestra inicialmente. La imagen desaparece y se reemplaza por el texto encriptado al hacer clic en "Encriptar".
-  - Instrucciones de uso claras y mensajes de advertencia para el usuario.
+  - La página está diseñada para adaptarse a diferentes tamaños de pantalla, desde computadoras de escritorio hasta móviles.
+  - Muestra una animación GIF mientras no hay texto encriptado. Esta imagen desaparece y se reemplaza por el texto encriptado cuando haces clic en "Encriptar".
+  - Ofrecemos instrucciones claras y mensajes de advertencia para ayudarte a usar la herramienta sin problemas.
 
-## Requisitos
-- **Lenguajes y Tecnologías:**
-  - HTML5, CSS3, JavaScript.
-  - Uso de la API del portapapeles de JavaScript.
-  - Gestión del DOM para manipulación de elementos HTML.
-  - Uso de una imagen GIF para animaciones.
+## 🛠️ Requisitos
+- **Tecnologías Usadas:**
+  - HTML5, CSS3, JavaScript. (lo usual y en ese orden)
+  - Utiliza la API del portapapeles de JavaScript para copiar y pegar texto. (lo automatico al apretar cosas)
+  - Incluye una imagen GIF para las animaciones. (podía ser otro formato pero es lo que hay)
 
-## Instalación
-1. Clona este repositorio: `git clone https://github.com/Petteko/encriptadorJS.git`
-2. Abre el archivo `index.html` en tu navegador.
+## 📥 Instalación
+1. Clona este repositorio con: `git clone https://github.com/Petteko/encriptadorJS.git`
+2. Abre el archivo `index.html` en tu navegador web para comenzar a usar la herramienta.
 
-## Uso
-1. Introduce el texto que deseas encriptar.
-2. Haz clic en "Encriptar" para generar el texto encriptado y la semilla.
-3. Copia el texto encriptado usando el botón "Copiar".
-4. Modifica la semilla si deseas experimentar con diferentes encriptaciones.
-5. Introduce la semilla y el texto encriptado para desencriptar el mensaje.
+## 🚀 Uso
+1. Escribe el texto que quieres encriptar en el área designada.
+2. Haz clic en "Encriptar" para obtener el texto encriptado y una semilla.
+3. Usa el botón "Copiar" para guardar el texto encriptado en tu portapapeles.
+4. Si quieres probar diferentes encriptaciones, puedes cambiar la semilla.
+5. Para desencriptar un mensaje, introduce la semilla y el texto encriptado.
 6. Haz clic en "Desencriptar" para recuperar el mensaje original.
+
+¡Esperamos que te caiga en gracia esta herramienta y encuentres útil su funcionalidad para inspirar tus proyectos!
+
+---
