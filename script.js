@@ -101,7 +101,7 @@ document.getElementById('decrypt-btn').addEventListener('click', function () {
     const currentSeed = document.getElementById('seed-input').value.trim();
 
     if (!/^\d{6}$/.test(currentSeed) && currentSeed !== SPECIAL_SEED) {
-        showDialog('⚠️ La semilla debe ser un número de 6 dígitos o la palabra "oracle".');
+        showDialog('⚠️ Debes introducir una semilla válida de 6 dígitos para desencriptar');
         return;
     }
 
