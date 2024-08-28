@@ -174,7 +174,7 @@ button + button {
 
 /* Advertencia */
 .warning {
-  margin-top: 0px; /* Parte superior entre contenedor de texto y botones */
+  margin-top: 4px; /* Parte superior entre contenedor de texto y botones */
   font-size: 12px; /* Tamaño del texto de advertencia */
   color: #6c757d; /* Gris */
   display: flex;
