@@ -174,23 +174,38 @@ button + button {
 
 /* Advertencia */
 .warning {
-  margin-top: 8px; /* Ajusta altura entre el cuadro y la advertencia */
-  font-size: 14px; /* Puede coincidir con la altura de los botones (?) */
+  margin-top: 0px; /* Parte superior entre contenedor de texto y botones */
+  font-size: 12px; /* Tamaño del texto de advertencia */
   color: #6c757d; /* Gris */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Contenedor muy cerca del cuadro de texto */
   justify-content: space-between;
 }
 
-.warning span {
-  margin-left: 0;
+.warning-text {
+  position: relative;
+  top: 0px; /* Ajusta la posición del texto sin cambiar la altura de los botones */
+  margin-right: auto; /* Empuja los botones hacia la derecha */
 }
 
+.warning-text span {
+  margin-right: 8px; /* Espacio entre el ícono de advertencia y el texto */
+}
+
+.warning-buttons {
+  display: flex;
+  gap: 5px; /* Ajusta el espacio entre los botones */
+}
+
+/* Ajuste en el estilo de los botones */
 .warning button {
-  font-size: 14px;
+  display: flex; /* Utiliza flexbox para alinear iconos */
+  justify-content: center; /* Modifica horizontalmente */
+  align-items: center; /* Modifica verticalmente */
+  font-size: 0x;
   width: 30px;
   height: 30px;
-  margin-left: 20px;
+  margin-left: 0; /* Elimina el margen izquierdo en los botones */
 }
 
 /* Contenedor de botones */
